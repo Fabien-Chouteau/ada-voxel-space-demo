@@ -13,10 +13,10 @@ Windows: Download GNAT Community: [here](https://www.adacore.com/download).
 
 # Build
 ```
-$ gprbuild -p -j0 example/example.gpr
+$ gprbuild -p -j0 ada_voxel_space_demo.gpr
 ```
 
 # Run
 ```
-$ ./example/main
+$ ./main
 ```
