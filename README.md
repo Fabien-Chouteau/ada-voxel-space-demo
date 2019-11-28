@@ -3,20 +3,36 @@
 This project is based on the excellent Voxel Space tutorial by Sebastian Macke:
 [VoxelSpace](https://github.com/s-macke/VoxelSpace).
 
-# Install
-Ubuntu:
+# Build
+
+First you need a toolchain.
+
+On a Linux system you can probably get one from the distribution.
+For instance on Ubuntu:
 ```
 $ sudo apt install gnat gprbuild
 ```
+On Windows you can download GNAT Community: [here](https://www.adacore.com/download).
 
-Windows: Download GNAT Community: [here](https://www.adacore.com/download).
+This project uses Alire (the Ada package manager). You have to install it
+following the instructions here:
+https://github.com/alire-project/alire#installation
 
-# Build
+Then you can build the project with this command:
 ```
-$ gprbuild -p -j0 ada_voxel_space_demo.gpr
+$ alr build
 ```
 
 # Run
 ```
-$ ./main
+$ alr run
 ```
+
+# Controls
+ - `Up arrow`: Move forward
+ - `Down arrow`: Move backward
+ - `Left arrow`: Turn left
+ - `Right arrow`: Turn right
+ - `Page Up`: Move up
+ - `Page Down`: Move down
+ - `Escape`: Quit
