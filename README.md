@@ -1,3 +1,5 @@
+[![Alire](https://img.shields.io/endpoint?url=https://alire.ada.dev/badges/ada_voxel_space_demo.json)](https://alire.ada.dev/crates/ada_voxel_space_demo.html)
+
 ![](example_screenshot.png)
 
 This project is based on the excellent Voxel Space tutorial by Sebastian Macke:
