@@ -1,16 +1,16 @@
-with "config/ada_voxel_space_demo2_config.gpr";
+with "config/ada_voxel_space_demo_config.gpr";
 with "sdlada";
 
-project Ada_Voxel_Space_Demo2 is
+project Ada_Voxel_Space_Demo is
 
    for Source_Dirs use ("src/", "config/");
-   for Object_Dir use "obj/" & Ada_Voxel_Space_Demo2_Config.Build_Profile;
+   for Object_Dir use "obj/" & Ada_Voxel_Space_Demo_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "bin";
    for Main use ("main");
 
    package Compiler is
-      for Default_Switches ("Ada") use Ada_Voxel_Space_Demo2_Config.Ada_Compiler_Switches;
+      for Default_Switches ("Ada") use Ada_Voxel_Space_Demo_Config.Ada_Compiler_Switches;
    end Compiler;
 
    package Linker is
@@ -25,4 +25,4 @@ project Ada_Voxel_Space_Demo2 is
       for Artifacts (".") use ("share");
    end Install;
 
-end Ada_Voxel_Space_Demo2;
+end Ada_Voxel_Space_Demo;
