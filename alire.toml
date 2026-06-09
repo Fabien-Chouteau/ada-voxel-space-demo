@@ -1,0 +1,13 @@
+name = "ada_voxel_space_demo2"
+description = "Voxel Space render engine demo in Ada"
+version = "2.0.0"
+
+authors = ["Fabien-Chouteau"]
+maintainers = ["fabien.chouteau@gmail.com"]
+licenses = "MIT"
+tags = []
+
+executables = ["main"]
+
+[[depends-on]]
+sdlada = "^2.3.1"

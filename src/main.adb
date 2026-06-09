@@ -1,5 +1,5 @@
 with Interfaces;    use Interfaces;
-with Ada.Real_Time; use Ada.Real_Time;
+--  with Ada.Real_Time; use Ada.Real_Time;
 
 with Ada_Voxel;
 with SDL_Display;
@@ -37,7 +37,7 @@ procedure Main is
 
    function Color_Map (X, Y : Integer) return Display.SDL_Pixel is
       C   : constant Unsigned_8 :=
-        Standard.Color_Map.Map ((Integer (X) mod 1024) + 1024 * (Integer (Y) mod 1024));
+        Standard.Color_Map.Map ((X mod 1024) + 1024 * (Y mod 1024));
       RGB : constant Standard.Color_Map.RGB := Standard.Color_Map.Palette (C);
    begin
       return Display.To_SDL_Color (RGB.R, RGB.G, RGB.B);
@@ -49,7 +49,7 @@ procedure Main is
 
    function Height_Map (X, Y : Integer) return Integer is
    begin
-      return Integer (Standard.Height_Map.Map ((Integer (X) mod 1024) + 1024 * (Integer (Y) mod 1024)));
+      return Integer (Standard.Height_Map.Map ((X mod 1024) + 1024 * (Y mod 1024)));
    end Height_Map;
 
    Cam_X      : Float := 1060.0;
@@ -57,8 +57,8 @@ procedure Main is
    Cam_Angle  : Float := 5.4;
    Cam_Height : Float := 120.0;
 
-   Period       : constant Time_Span := To_Time_Span (1.0 / 60.0);
-   Next_Release : Time := Clock + Period;
+   --  Period       : constant Time_Span := To_Time_Span (1.0 / 60.0);
+   --  Next_Release : Time := Clock + Period;
 
 begin
    loop

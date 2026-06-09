@@ -1,9 +1,6 @@
 with SDL;
 with SDL.Video.Windows;
 with SDL.Video.Windows.Makers;
-with SDL.Video.Surfaces;
-with SDL.Video.Palettes; use SDL.Video.Palettes;
-with SDL.Video.Pixels;
 with SDL.Video.Pixel_Formats; use SDL.Video.Pixel_Formats;
 with SDL.Video.Textures; use SDL.Video.Textures;
 with SDL.Video.Textures.Makers;
@@ -12,7 +9,6 @@ with SDL.Video.Renderers.Makers;
 use SDL.Video;
 
 with Interfaces.C; use Interfaces.C;
-with Ada.Unchecked_Conversion;
 with System; use System;
 
 package body SDL_Display is
@@ -48,8 +44,8 @@ package body SDL_Display is
      (X, Start_Y, Stop_Y : Integer;
       C : SDL_Pixel)
    is
-      Width         : constant Natural := Texture.Get_Size.Width;
-      Height        : constant Natural := Texture.Get_Size.Height;
+      Width         : constant Natural := Natural (Texture.Get_Size.Width);
+      Height        : constant Natural := Natural (Texture.Get_Size.Height);
       Bounded_Start : constant Natural := (if Start_Y > 0 then Start_Y else 0);
    begin
       if X in 0 .. Width - 1 then
@@ -60,7 +56,7 @@ package body SDL_Display is
             
          begin
             for Y in Bounded_Start .. Integer'Min (Stop_Y, Height - 1) loop
-               Actual_Pixels (X + Y * Natural (Width)) := C;
+               Actual_Pixels (X + Y * Width) := C;
             end loop;
          end;
       end if;
@@ -71,8 +67,8 @@ package body SDL_Display is
    ----------
 
    procedure Fill (C : SDL_Pixel) is
-      Width      : constant Natural := Texture.Get_Size.Width;
-      Height     : constant Natural := Texture.Get_Size.Height;
+      Width      : constant Natural := Natural (Texture.Get_Size.Width);
+      Height     : constant Natural := Natural (Texture.Get_Size.Height);
    begin
       declare
          Actual_Pixels : Texture_1D_Array (0 .. Natural (Width * Height - 1))
@@ -91,8 +87,8 @@ package body SDL_Display is
    ----------------
 
    procedure End_Render is
-      Width  : constant Natural := Texture.Get_Size.Width;
-      Height : constant Natural := Texture.Get_Size.Height;
+      Width  : constant Natural := Integer (Texture.Get_Size.Width);
+      Height : constant Natural := Integer (Texture.Get_Size.Height);
    begin
       Texture.Unlock;
       SDL_Pixels := System.Null_Address;
@@ -133,8 +129,8 @@ package body SDL_Display is
         (W, "Ada Voxel",
          0,
          0,
-         Screen_Width,
-         Screen_Height,
+         SDL.Positive_Dimension (Screen_Width),
+         SDL.Positive_Dimension (Screen_Height),
          Flags    => SDL.Video.Windows.Resizable);
 
       SDL.Video.Renderers.Makers.Create (Renderer, W);
@@ -144,8 +140,8 @@ package body SDL_Display is
          Renderer => Renderer,
          Format   => SDL.Video.Pixel_Formats.Pixel_Format_RGB_565,
          Kind     => SDL.Video.Textures.Streaming,
-         Size     => (Screen_Width,
-                      Screen_Height));
+         Size     => (SDL.Positive_Dimension (Screen_Width),
+                      SDL.Positive_Dimension (Screen_Height)));
    end Initialize;
 
 begin
