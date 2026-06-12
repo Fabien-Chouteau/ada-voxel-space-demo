@@ -1,8 +1,10 @@
-# Object file
-*.o
+/alire/
+/bin/
+/config/
+/lib/
+/obj/
 
-# Ada Library Information
+*.a
 *.ali
-
-obj/
-example/main
+*.o
+*.so
